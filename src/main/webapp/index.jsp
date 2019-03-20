@@ -17,6 +17,7 @@
                     <div class="row">
                         <form action="login" method="post">
                             <div class="form-group">
+                                <h1><label class="control-label" for="UserName">Oscar DIaz</label></h1>
                                 <h4><label class="control-label" for="UserName">Employee email</label></h4>
                                 <div class="form-control-div">
                                     <input class="form-control" type="text" id="email" name="email" />
