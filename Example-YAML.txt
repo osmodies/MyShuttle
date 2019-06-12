@@ -8,6 +8,7 @@ trigger:
 
 variables:
     -psw: 8ZciFEaxLrx3ELpcSixUbny0f+yIhWxj
+    -user: colsazurecontainerregistrydigital
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -70,8 +71,8 @@ steps:
     targetType: 'inline'
     script: |
         docker-compose -f "$(build.sourcesdirectory)/docker-compose.yml" -f "$(build.sourcesdirectory)/front-proxy/docker-compose.yml" build
-        docker login -u colsazurecontainerregistrydigital -p $(psw) colsazurecontainerregistrydigital.azurecr.io
-        docker-compose push colsazurecontainerregistrydigital.azurecr.io/providers/cols_providers_front:latest
+        cat "$(build.sourcesdirectory)/my_password.txt" | docker login -u colsazurecontainerregistrydigital --password-stdin colsazurecontainerregistrydigital.azurecr.io
+        docker push colsazurecontainerregistrydigital.azurecr.io/providers/cols_providers_front:latest
 
 #- task: Bash@3
 # inputs:
