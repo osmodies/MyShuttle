@@ -1,0 +1,101 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+variables:
+    -psw: 8ZciFEaxLrx3ELpcSixUbny0f+yIhWxj
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install -g @angular/cli
+    npm install
+    ng build --prod
+  displayName: 'npm install and build'
+#  enabled: false
+
+- task: CopyFiles@2
+  displayName: 'Copy dist files'
+  inputs:
+    SourceFolder: '$(build.sourcesdirectory)'
+    Contents: |
+     dist/**/*
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+#- script: 'ls -a'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+
+#- task: Docker@1
+#  displayName: 'Build an image'
+#  inputs:
+#    azureSubscriptionEndpoint: 'VS Ent-MPN- ODIAZ(972e401d-226e-48c7-a463-6d562c39edda)'
+#    azureContainerRegistry: stpccolregistry.azurecr.io
+#    dockerFile: Dockerfile
+#    imageName: 'frontproveedores:latest'
+#    includeLatestTag: true
+#    useDefaultContext: false
+#    buildContext: .
+
+#- task: Docker@1
+#  displayName: 'Push an image'
+#  inputs:
+#    azureSubscriptionEndpoint: 'VS Ent-MPN- ODIAZ(972e401d-226e-48c7-a463-6d562c39edda)'
+#    azureContainerRegistry: stpccolregistry.azurecr.io
+#    command: 'Push an image'
+#    imageName: 'frontproveedores:latest'
+
+
+#- script: |  
+#      docker-compose build docker-compose.yml
+#      docker login -u colsazurecontainerregistrydigital -p 8ZciFEaxLrx3ELpcSixUbny0f+yIhWxj colsazurecontainerregistrydigital.azurecr.io
+#      docker-compose push colsazurecontainerregistrydigital.azurecr.io
+#      displayname: 'Docker-compose bash'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+        docker-compose -f "$(build.sourcesdirectory)/docker-compose.yml" -f "$(build.sourcesdirectory)/front-proxy/docker-compose.yml" build
+        docker login -u colsazurecontainerregistrydigital -p $(psw) colsazurecontainerregistrydigital.azurecr.io
+        docker-compose push colsazurecontainerregistrydigital.azurecr.io/providers/cols_providers_front:latest
+
+#- task: Bash@3
+# inputs:
+#  targetType: 'inline'
+#    script: 'docker-compose push colsazurecontainerregistrydigital.azurecr.io/providers/cols_providers_front:latest'    
+
+#- task: DockerCompose@0
+#  inputs:
+#    containerregistrytype: 'Azure Container Registry'
+#    azureSubscription: 'VS Ent-MPN- ODIAZ(972e401d-226e-48c7-a463-6d562c39edda)'
+#    azureContainerRegistry: '{"loginServer":"stpccolregistry.azurecr.io", "id" : "/subscriptions/972e401d-226e-48c7-a463-6d562c39edda/resourceGroups/ColsubsidioProveedores/providers/Microsoft.ContainerRegistry/registries/STPCColRegistry"}'
+#    dockerComposeFile: 'docker-compose.yml'
+#    additionalDockerComposeFiles: 'front-proxy/docker-compose.yml'
+#    action: 'Build services'
+#    additionalImageTags: 'front-$(Build.BuildNumber)'
+#    includeLatestTag: true
+
+#- task: DockerCompose@0
+#  inputs:
+#    containerregistrytype: 'Azure Container Registry'
+#    azureSubscription: 'VS Ent-MPN- ODIAZ(972e401d-226e-48c7-a463-6d562c39edda)'
+#    azureContainerRegistry: '{"loginServer":"stpccolregistry.azurecr.io", "id" : "/subscriptions/972e401d-226e-48c7-a463-6d562c39edda/resourceGroups/ColsubsidioProveedores/providers/Microsoft.ContainerRegistry/registries/STPCColRegistry"}'
+#    dockerComposeFile: 'docker-compose.yml'
+#    action: 'Push services'
+#    additionalDockerComposeFiles: 'front-proxy/docker-compose.yml'
+#    additionalImageTags: 'front-$(Build.BuildNumber)'
+#    includeLatestTag: true
