@@ -22,7 +22,7 @@
                                     <input class="form-control" type="text" id="email" name="email" />
                                 </div>
                                     
-                                    <h4><label class="control-label" for="Password">Collaborator password</label></h4>
+                                    <h4><label class="control-label" for="Password">Employee password</label></h4>
                                 <div class="form-control-div">
                                     <input class="form-control" type="password" id="password" name="password" /><br />
                                     </div>
