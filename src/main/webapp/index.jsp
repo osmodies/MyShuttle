@@ -17,12 +17,12 @@
                     <div class="row">
                         <form action="login" method="post">
                             <div class="form-group">
-                                    <h4><label class="control-label" for="UserName">Affiliated email</label></h4>
+                                    <h4><label class="control-label" for="UserName">Collaborator email</label></h4>
                                 <div class="form-control-div">
                                     <input class="form-control" type="text" id="email" name="email" />
                                 </div>
                                     
-                                    <h4><label class="control-label" for="Password">Affiliated password</label></h4>
+                                    <h4><label class="control-label" for="Password">Collaborator password</label></h4>
                                 <div class="form-control-div">
                                     <input class="form-control" type="password" id="password" name="password" /><br />
                                     </div>
