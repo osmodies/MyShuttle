@@ -6,7 +6,8 @@
 resources:
   repositories:
     - repository: templates
-      type: DemoSura/template-yaml
+      type: git 
+      name: DemoSura/template-yaml
 
 trigger:
   branches:
