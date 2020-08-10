@@ -1,0 +1,29 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+resources:
+  repositories:
+    - repository: templates
+      type: DemoSura/template-yaml
+
+trigger:
+  branches:
+   include: 
+    - 'master'
+  paths:
+    exclude: 
+      - CI 
+
+pool:
+  vmImage: 'ubuntu-latest'
+steps:
+  - template: MavenWithSonar.yml@templates
+    parameters:
+      SonarQubeServer: 'SonarQubeSTPC'
+      SonarQubeRunAnalysis: true
+      MavenAuthenticateFeed: true
+      JdkVersionOption: '1.8'
+      MavenGoals: 'package'
+      options: '-DskipITs'
