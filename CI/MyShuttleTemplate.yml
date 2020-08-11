@@ -17,21 +17,15 @@ trigger:
     exclude:
       - CI
 
-stages:
-
-- stage: Build
-  displayName: Build stage
-  jobs:
-  - job: BuildJob
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
+pool:
+  vmImage: 'ubuntu-latest'
+steps:
   
-    - template: MavenWithSonar.yml@TemplatesYaml
-      parameters:
-        SonarQubeServer: 'SonarQubeSTPC'
-        SonarQubeRunAnalysis: true
-        MavenAuthenticateFeed: true
-        JdkVersionOption: '1.8'
-        MavenGoals: 'package'
-        options: '-DskipITs'
+- template: MavenWithSonar.yml@TemplatesYaml
+  parameters:
+    SonarQubeServer: 'SonarQubeSTPC'
+    SonarQubeRunAnalysis: true
+    MavenAuthenticateFeed: true
+    JdkVersionOption: '1.8'
+    MavenGoals: 'package'
+    options: '-DskipITs'
