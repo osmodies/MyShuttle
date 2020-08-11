@@ -30,7 +30,7 @@ stages:
     - template: MavenWithSonar.yml@TemplatesYaml
       parameters:
         SonarQubeServer: 'SonarQubeSTPC'
-        SonarQubeRunAnalysis: true
+        ParameterSonarQubeRunAnalysis: true
         MavenAuthenticateFeed: true
         JdkVersionOption: '1.8'
         MavenGoals: 'package'
