@@ -5,8 +5,8 @@
 
 resources:
   repositories:
-    - repository: templates
-      type: git 
+    - repository: TemplatesYaml
+      type: git
       name: DemoSura/template-yaml
 
 trigger:
@@ -14,17 +14,24 @@ trigger:
    include: 
     - 'master'
   paths:
-    exclude: 
-      - CI 
+    exclude:
+      - CI
 
-pool:
-  vmImage: 'ubuntu-latest'
-steps:
-  - template: MavenWithSonar.yml@templates
-    parameters:
-      SonarQubeServer: 'SonarQubeSTPC'
-      SonarQubeRunAnalysis: true
-      MavenAuthenticateFeed: true
-      JdkVersionOption: '1.8'
-      MavenGoals: 'package'
-      options: '-DskipITs'
+stages:
+
+- stage: Build
+  displayName: Build stage
+  jobs:
+  - job: BuildJob
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+  
+    - template: MavenWithSonar.yml@TemplatesYaml
+      parameters:
+        SonarQubeServer: 'SonarQubeSTPC'
+        SonarQubeRunAnalysis: true
+        MavenAuthenticateFeed: true
+        JdkVersionOption: '1.8'
+        MavenGoals: 'package'
+        options: '-DskipITs'
