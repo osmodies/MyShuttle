@@ -5,9 +5,9 @@
 
 resources:
   repositories:
-    - repository: TemplatesYaml
-      type: git
-      name: DemoSura/TemplateYaml
+  - repository: TemplatesYaml
+    type: git
+    name: DemoSura/TemplateYaml
 
 trigger:
   branches:
