@@ -20,12 +20,29 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 steps:
-  
-- template: MavenWithSonar.yml@TemplatesYaml
-  parameters:
-    SonarQubeServer: 'SonarQubeSTPC'
-    SonarQubeRunAnalysis: true
-    MavenAuthenticateFeed: true
-    JdkVersionOption: '1.8'
-    MavenGoals: 'package'
+
+- task: Maven@3
+  displayName: 'Maven pom.xml'
+  inputs:
+    goals: 'package'
     options: '-DskipITs'
+    codeCoverageToolOption: JaCoCo
+    codeCoverageSourceDirectories: src/main
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: 1.8
+    mavenOptions: '-Xmx3072m'
+    mavenAuthenticateFeed: true
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+    sqMavenPluginVersionChoice: 'latest'
+
+# - template: MavenWithSonar.yml@TemplatesYaml
+#  parameters:
+#    SonarQubeServer: 'SonarQubeSTPC'
+#    SonarQubeRunAnalysis: true
+#    MavenAuthenticateFeed: true
+#    JdkVersionOption: '1.8'
+#    MavenGoals: 'package'
+#    options: '-DskipITs'
