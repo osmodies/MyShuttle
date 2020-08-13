@@ -3,12 +3,6 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
-resources:
-  repositories:
-  - repository: TemplatesYaml
-    type: git
-    name: DemoSura/TemplateYaml
-
 trigger:
   branches:
    include: 
@@ -38,11 +32,4 @@ steps:
     sonarQubeRunAnalysis: false
     sqMavenPluginVersionChoice: 'latest'
 
-# - template: MavenWithSonar.yml@TemplatesYaml
-#  parameters:
-#    SonarQubeServer: 'SonarQubeSTPC'
-#    SonarQubeRunAnalysis: true
-#    MavenAuthenticateFeed: true
-#    JdkVersionOption: '1.8'
-#    MavenGoals: 'package'
-#    options: '-DskipITs'
+
