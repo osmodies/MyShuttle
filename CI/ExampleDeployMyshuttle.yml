@@ -20,7 +20,7 @@ trigger:
 extends:
   template: DeployAppSura.yml@TemplatesYaml
   parameters:
-    StageDepend: 'Build'
+    StageDepend: 'Post_Deployment_Approval'
     EnviromentPostApproval: 'Myshuttle-dev'
     AzSubscription: 'sura'
     ScriptAzureCli: 'az webapp create -g MyShuttleSTPC -p ServicePlan0d0fa304-85f3 -n MyShuttlesura --runtime "TOMCAT|9.0-java11"'
