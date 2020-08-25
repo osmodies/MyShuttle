@@ -18,7 +18,7 @@ trigger:
       - CI
 
 extends:
-  template: DeployAppSura.yml.yml@TemplatesYaml
+  template: DeployAppSura.yml@TemplatesYaml
   parameters:
     StageDepend: 'Build'
     EnviromentPostApproval: 'Myshuttle-dev'
