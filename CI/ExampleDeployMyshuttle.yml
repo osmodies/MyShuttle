@@ -53,7 +53,7 @@ stages:
                 packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.war'
                 RuntimeStack: 'TOMCAT|9.0-java11'
 
-- template: postdeploymentapproval.yml@InterTemplatesYaml
+- template: postdeploymentapproval.yml@TemplatesYaml
   parameters:
     StageDepend: 'Deployment_Myshuttle'
     EnviromentPostApproval: 'Myshuttle-dev'
