@@ -1,0 +1,27 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+resources:
+  repositories:
+  - repository: TemplatesYaml
+    type: git
+    name: DemoSura/TemplateYaml
+
+trigger:
+  branches:
+   include: 
+    - 'master'
+  paths:
+    exclude:
+      - CI
+
+extends:
+  template: DeployAppSura.yml.yml@TemplatesYaml
+  parameters:
+    StageDepend: 'Build'
+    EnviromentPostApproval: 'Myshuttle-dev'
+    AzSubscription: 'sura'
+    ScriptAzureCli: 'az webapp create -g MyShuttleSTPC -p ServicePlan0d0fa304-85f3 -n MyShuttlesura --runtime "TOMCAT|9.0-java11"'
+    RuntimeStack: 'TOMCAT|9.0-java11'
