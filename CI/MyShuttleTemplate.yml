@@ -56,3 +56,19 @@ extends:
               echo 'Hello world'
               cd $(build.sourcesdirectory)
               ls
+stages:
+- stage: 'Dev'
+  displayName: 'Deploy Dev environment'
+  condition: and(succeeded(),eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  dependsOn: Build
+  jobs:
+  - deployment: Deploy_Delta_Dev
+    pool:
+       vmImage: 'ubuntu-latest'
+    environment: 'Myshuttle-dev'
+    strategy:
+      # default deployment strategy, more coming...
+      runOnce:
+        deploy:
+          steps:
+          - checkout: none
