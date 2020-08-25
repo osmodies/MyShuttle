@@ -29,7 +29,7 @@ stages:
   - deployment: Deployment_Myshuttle
     pool:
        vmImage: 'ubuntu-latest'
-    environment: ${{ parameters.EnviromentPostApproval }}
+    environment: Myshuttle-dev
     strategy:
       # default deployment strategy, more coming...
       runOnce:
@@ -42,7 +42,7 @@ stages:
               azureSubscription: 'sura'
               scriptType: 'batch'
               scriptLocation: 'inlineScript'
-              inlineScript: '${{ parameters.ScriptAzureCli }}'
+              inlineScript: 'az webapp create -g MyShuttleSTPC -p ServicePlan0d0fa304-85f3 -n MyShuttlesura --runtime "TOMCAT|9.0-java11"'
 
           - task: AzureRmWebAppDeployment@4
             inputs:
@@ -51,7 +51,7 @@ stages:
                 appType: 'webAppLinux'
                 WebAppName: 'MyShuttlesura'
                 packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.war'
-                RuntimeStack: ${{ parameters.RuntimeStack }}
+                RuntimeStack: 'TOMCAT|9.0-java11'
 
 - template: postdeploymentapproval.yml@InterTemplatesYaml
   parameters:
