@@ -56,8 +56,3 @@ extends:
               echo 'Hello world'
               cd $(build.sourcesdirectory)
               ls
-
-  template: postdeploymentapproval.yml@TemplatesYaml
-  parameters:
-    StageDepend: 'Build'
-    EnviromentPostApproval: 'Myshuttle-dev'
