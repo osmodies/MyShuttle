@@ -4,14 +4,13 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 resources:
-  pipelines:
-  - pipeline: MyShuttle-yaml-resource 
-    source: MyShuttle-yaml
-
   repositories:
   - repository: TemplatesYaml
     type: git
     name: DemoSura/TemplateYaml
+  pipelines:
+  - pipeline: MyShuttle-yaml-resource 
+    source: MyShuttle-yaml
 
 trigger:
   branches:
