@@ -57,7 +57,7 @@ stages:
               cd $(build.sourcesdirectory)
               ls
 
-- template: postdeploymentapproval.yml@TemplatesYaml
+- template: TemplatesYaml/postdeploymentapproval.yml
   parameters:
     StageDepend: 'Build'
     EnviromentPostApproval: 'Myshuttle-dev'
