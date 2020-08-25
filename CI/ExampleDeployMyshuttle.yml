@@ -4,6 +4,10 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 resources:
+  pipelines:
+  - pipeline: MyShuttle-yaml-resource 
+    source: MyShuttle-yaml
+
   repositories:
   - repository: TemplatesYaml
     type: git
@@ -17,11 +21,40 @@ trigger:
     exclude:
       - CI
 
-extends:
-  template: DeployAppSura.yml@TemplatesYaml
+stages:
+- stage: 'Deployment_Myshuttle'
+  displayName: 'Deployment_Myshuttle'
+  #condition: and(succeeded(),eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  #dependsOn: ${{ parameters.StageDepend }}
+  jobs:
+  - deployment: Deployment_Myshuttle
+    pool:
+       vmImage: 'ubuntu-latest'
+    environment: ${{ parameters.EnviromentPostApproval }}
+    strategy:
+      # default deployment strategy, more coming...
+      runOnce:
+        deploy:
+          steps:
+
+          - task: AzureCLI@2
+            displayName: 'Create AppService'
+            inputs:
+              azureSubscription: 'sura'
+              scriptType: 'batch'
+              scriptLocation: 'inlineScript'
+              inlineScript: '${{ parameters.ScriptAzureCli }}'
+
+          - task: AzureRmWebAppDeployment@4
+            inputs:
+                ConnectionType: 'AzureRM'
+                azureSubscription: 'sura'
+                appType: 'webAppLinux'
+                WebAppName: 'MyShuttlesura'
+                packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.war'
+                RuntimeStack: ${{ parameters.RuntimeStack }}
+
+- template: postdeploymentapproval.yml@InterTemplatesYaml
   parameters:
     StageDepend: 'Deployment_Myshuttle'
     EnviromentPostApproval: 'Myshuttle-dev'
-    AzSubscription: 'sura'
-    ScriptAzureCli: 'az webapp create -g MyShuttleSTPC -p ServicePlan0d0fa304-85f3 -n MyShuttlesura --runtime "TOMCAT|9.0-java11"'
-    RuntimeStack: 'TOMCAT|9.0-java11'
