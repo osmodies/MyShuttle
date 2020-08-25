@@ -23,7 +23,7 @@ trigger:
 stages:
 - stage: 'Deployment_Myshuttle'
   displayName: 'Deployment_Myshuttle'
-  #condition: and(succeeded(),eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  condition: and(succeeded(),eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   #dependsOn: ${{ parameters.StageDepend }}
   jobs:
   - deployment: Deployment_Myshuttle
