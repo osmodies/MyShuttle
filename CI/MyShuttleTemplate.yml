@@ -56,3 +56,6 @@ extends:
               echo 'Hello world'
               cd $(build.sourcesdirectory)
               ls
+        - task: WhiteSource Bolt@20
+          inputs:
+            cwd: '$(build.sourcesdirectory)'
