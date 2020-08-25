@@ -17,8 +17,8 @@ trigger:
     exclude:
       - CI
 
-stages:
-- template: MavenWithSonar.yml@TemplatesYaml
+extends:
+  template: MavenWithSonar.yml@TemplatesYaml
   parameters:
     SonarQubeServer: 'SonarQubeSTPC'
     SonarQubeRunAnalysis: true
@@ -57,7 +57,7 @@ stages:
               cd $(build.sourcesdirectory)
               ls
 
-- template: postdeploymentapproval.yml@TemplatesYaml
+  template: postdeploymentapproval.yml@TemplatesYaml
   parameters:
     StageDepend: 'Build'
     EnviromentPostApproval: 'Myshuttle-dev'
