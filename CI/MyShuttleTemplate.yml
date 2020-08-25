@@ -17,8 +17,8 @@ trigger:
     exclude:
       - CI
 
-extends:
-  template: MavenWithSonar.yml@TemplatesYaml
+stages:
+- template: TemplatesYaml/MavenWithSonar.yml
   parameters:
     SonarQubeServer: 'SonarQubeSTPC'
     SonarQubeRunAnalysis: true
@@ -56,19 +56,8 @@ extends:
               echo 'Hello world'
               cd $(build.sourcesdirectory)
               ls
-stages:
-- stage: 'Dev'
-  displayName: 'Deploy Dev environment'
-  condition: and(succeeded(),eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  dependsOn: Build
-  jobs:
-  - deployment: Deploy_Delta_Dev
-    pool:
-       vmImage: 'ubuntu-latest'
-    environment: 'Myshuttle-dev'
-    strategy:
-      # default deployment strategy, more coming...
-      runOnce:
-        deploy:
-          steps:
-          - checkout: none
+
+- template: postdeploymentapproval.yml@TemplatesYaml
+  parameters:
+    StageDepend: 'Build'
+    EnviromentPostApproval: 'Myshuttle-dev'
