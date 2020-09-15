@@ -126,7 +126,7 @@
     </dependency>
   </dependencies>
   <repositories> 
-      <repository>
+    <repository>
       <id>STPC</id>
       <url>Demo-MyShuttle/_packaging/STPC/maven/v1</url>
       <releases>
@@ -136,9 +136,9 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
-</repositories>
-<dependencies> 
-      <repository>
+  </repositories>
+  <distributionManagement> 
+    <repository>
       <id>STPC</id>
       <url>Demo-MyShuttle/_packaging/STPC/maven/v1</url>
       <releases>
@@ -148,5 +148,5 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
-</dependencies> 
+  </distributionManagement> 
 </project>
