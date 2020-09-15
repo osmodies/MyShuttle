@@ -125,4 +125,28 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <repositories> 
+      <repository>
+      <id>STPC</id>
+      <url>Demo-MyShuttle/_packaging/STPC/maven/v1</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+</repositories>
+<dependencies> 
+      <repository>
+      <id>STPC</id>
+      <url>Demo-MyShuttle/_packaging/STPC/maven/v1</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+</dependencies> 
 </project>
