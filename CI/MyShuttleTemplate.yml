@@ -59,6 +59,3 @@ extends:
         - task: WhiteSource Bolt@20
           inputs:
             cwd: '$(build.sourcesdirectory)'
-        - task: ManualValidation@0
-          inputs:
-            notifyUsers: 'odiaz@synergytpc.com'
