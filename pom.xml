@@ -127,8 +127,8 @@
   </dependencies>
  <repositories> 
     <repository>
-      <id>STPC</id>
-      <url>Demo-MyShuttle/_packaging/STPC/maven/v1</url>
+       <id>STPC</id>
+       <url>https://pkgs.dev.azure.com/synergy-tpc/Demo-MyShuttle/_packaging/STPC/maven/v1</url>
       <releases>
         <enabled>true</enabled>
       </releases>
@@ -139,8 +139,8 @@
   </repositories>
   <distributionManagement> 
     <repository>
-      <id>STPC</id>
-      <url>Demo-MyShuttle/_packaging/STPC/maven/v1</url>
+       <id>STPC</id>
+       <url>https://pkgs.dev.azure.com/synergy-tpc/Demo-MyShuttle/_packaging/STPC/maven/v1</url>
       <releases>
         <enabled>true</enabled>
       </releases>
