@@ -125,10 +125,10 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <repositories> 
+ <repositories> 
     <repository>
-      <id>STPC</id>
-      <url>Demo-MyShuttle/_packaging/STPC/maven/v1</url>
+      <id>partsunlimited</id>
+      <url>https://pkgs.dev.azure.com/synergy-tpc/_packaging/partsunlimited@MyShuttle-local/maven/v1</url>
       <releases>
         <enabled>true</enabled>
       </releases>
@@ -139,8 +139,8 @@
   </repositories>
   <distributionManagement> 
     <repository>
-      <id>STPC</id>
-      <url>Demo-MyShuttle/_packaging/STPC/maven/v1</url>
+      <id>partsunlimited</id>
+      <url>https://pkgs.dev.azure.com/synergy-tpc/_packaging/partsunlimited@MyShuttle-local/maven/v1</url>
       <releases>
         <enabled>true</enabled>
       </releases>
