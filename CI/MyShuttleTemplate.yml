@@ -24,8 +24,8 @@ extends:
     SonarQubeRunAnalysis: false
     MavenAuthenticateFeed: true
     JdkVersionOption: '1.8'
-    MavenGoals: 'deploy -Dbuildversion=$(Build.BuildNumber)'
-    options: '-DskipITs'
+    MavenGoals: 'deploy'
+    options: '-DskipITs -Dbuildversion=$(Build.BuildNumber)'
     buildSteps:
         - task: Maven@3
           displayName: 'Execution Maven 2222222'
