@@ -16,7 +16,7 @@ trigger:
   paths:
     exclude:
       - CI
-
+name: $(major).$(minor).$(patch)
 extends:
   template: MavenWithSonar.yml@TemplatesYaml
   parameters:
@@ -24,7 +24,7 @@ extends:
     SonarQubeRunAnalysis: false
     MavenAuthenticateFeed: true
     JdkVersionOption: '1.8'
-    MavenGoals: 'package'
+    MavenGoals: 'deploy -Dbuildversion=$(Build.BuildNumber)'
     options: '-DskipITs'
     buildSteps:
         - task: Maven@3
@@ -59,3 +59,6 @@ extends:
         - task: WhiteSource Bolt@20
           inputs:
             cwd: '$(build.sourcesdirectory)'
+        - task: ManualValidation@0
+          inputs:
+            notifyUsers: 'odiaz@synergytpc.com'
