@@ -25,7 +25,7 @@ extends:
     MavenAuthenticateFeed: true
     JdkVersionOption: '1.8'
     MavenGoals: 'deploy'
-    options: '-DskipITs'
+    options: '-DskipITs -Dversion="$(build.buildNumber)"'
     buildSteps:
         - task: Maven@3
           displayName: 'Execution Maven 2222222'
