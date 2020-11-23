@@ -8,7 +8,7 @@ resources:
 trigger:
 - master
 
-stages:
+steps:
 - template: start.yml@TemplatesYaml
   parameters:
     buildSteps:  
