@@ -14,11 +14,11 @@ steps:
   parameters:
     buildSteps:  
       - bash: echo Test #Passes
-        displayName: succeed
+        displayName: Build
       - bash: echo "Test"
-        displayName: succeed
+        displayName: UnitTest
       - task: Bash@3
-        displayName: Test 4 - Will Fail
+        displayName: Sonar
         inputs:
           targetType: 'inline'
           script: 'echo "Script Test2"'
