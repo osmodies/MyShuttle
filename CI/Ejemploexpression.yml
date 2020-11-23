@@ -8,8 +8,8 @@ resources:
 trigger:
 - master
 
-extends:
-  template: start.yml@TemplatesYaml
+steps:
+- template: start.yml@TemplatesYaml
   parameters:
     buildSteps:  
       - bash: echo Test #Passes
