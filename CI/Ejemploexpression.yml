@@ -25,3 +25,7 @@ extends:
         inputs:
           targetType: 'inline'
           script: 'echo "Script Test2"'
+      - task: SSH@0
+        inputs:
+          runOptions: 'commands'
+          readyTimeout: '20000'
