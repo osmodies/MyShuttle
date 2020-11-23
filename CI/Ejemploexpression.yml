@@ -1,9 +1,15 @@
 # File: azure-pipelines.yml
+resources:
+  repositories:
+  - repository: TemplatesYaml
+    type: git
+    name: DemoSura/TemplateYaml
+
 trigger:
 - master
 
 extends:
-  template: start.yml
+  template: start.yml@TemplatesYaml
   parameters:
     buildSteps:  
       - bash: echo Test #Passes
