@@ -10,14 +10,14 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 steps:
-- template: start.yml@TemplatesYaml
+- template: requiredtask.yml@TemplatesYaml
   parameters:
     buildSteps:  
       - bash: echo Test #Passes
         displayName: succeed
       - bash: echo "Test"
         displayName: succeed
-      - task: CmdLine@2
+      - task: Bash@3
         displayName: Test 3 - Will Fail
         inputs:
           script: echo "Script Test"
@@ -26,7 +26,7 @@ steps:
         inputs:
           targetType: 'inline'
           script: 'echo "Script Test2"'
-      - task: SSH@0
+      - task: Bash@3
         inputs:
           runOptions: 'commands'
           readyTimeout: '20000'
