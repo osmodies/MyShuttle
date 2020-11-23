@@ -22,14 +22,3 @@ steps:
         inputs:
           targetType: 'inline'
           script: 'echo "Script Test2"'
-      
-#      - task: CmdLine@2
-#        displayName: Test 3 - Will Fail
-#        inputs:
-#          script: echo "Script Test"
-#        enabled: false
-#      - task: SSH@0
-#        inputs:
-#          runOptions: 'commands'
-#          readyTimeout: '20000'
-#        enabled: false
