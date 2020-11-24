@@ -15,6 +15,7 @@ steps:
     buildSteps:  
       - bash: echo Test #Passes
         displayName: Build
+      
       - bash: echo "Test"
         displayName: UnitTest
       - task: Bash@3
