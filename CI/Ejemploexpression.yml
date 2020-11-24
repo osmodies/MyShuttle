@@ -7,9 +7,8 @@ resources:
 
 trigger:
 - master
-pool:
-  vmImage: 'ubuntu-latest'
-steps:
+
+stages:
 - template: requiredtask.yml@TemplatesYaml
   parameters:
     buildSteps:  
