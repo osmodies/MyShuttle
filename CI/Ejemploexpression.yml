@@ -23,3 +23,8 @@ steps:
         inputs:
           targetType: 'inline'
           script: 'echo "Script Test2"'
+      - task: Bash@3
+        displayName: Sonar
+        inputs:
+          targetType: 'inline'
+          script: 'echo "Script Test2"'
