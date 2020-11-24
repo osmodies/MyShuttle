@@ -19,12 +19,12 @@ steps:
       - bash: echo "Test"
         displayName: UnitTest
       - task: Bash@3
-        displayName: Pepe
+        displayName: Sonar
         inputs:
           targetType: 'inline'
           script: 'echo "Script Test2"'
       - task: Bash@3
-        displayName: Sonar
+        displayName: Pepe
         inputs:
           targetType: 'inline'
           script: 'echo "Script Test2"'
