@@ -21,17 +21,19 @@ steps:
       
       - bash: echo "Test"
         displayName: UnitTest
+      
+      - task: Bash@3
+        displayName: Sonar
+        inputs:
+          targetType: 'inline'
+          script: 'echo "Script Test2"'
       - task: SSH@0
         inputs:
           runOptions: 'inline'
           readyTimeout: '20000'
       - task: CmdLine@2
         displayName: Test 3 - Will Fail
-      - task: Bash@3
-        displayName: Sonar
-        inputs:
-          targetType: 'inline'
-          script: 'echo "Script Test2"'
+      
       - task: Bash@3
         displayName: Pepe
         inputs:
