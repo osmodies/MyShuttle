@@ -8,7 +8,7 @@ resources:
 trigger:
 - master
 
-stages:
+steps:
 - template: requiredtask.yml@TemplatesYaml
   parameters:
     buildSteps:  
