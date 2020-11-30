@@ -27,16 +27,17 @@ steps:
         inputs:
           targetType: 'inline'
           script: 'echo "Script Test2"'
-      - task: SSH@0
-        inputs:
-          runOptions: 'inline'
-          readyTimeout: '20000'
-        enabled: false
-      - task: CmdLine@2
-        displayName: Test 3 - Will Fail
-        enabled: false
       - task: Bash@3
         displayName: Pepe
         inputs:
           targetType: 'inline'
           script: 'echo "Script Test2"'
+
+#      - task: SSH@0
+#        inputs:
+#          runOptions: 'inline'
+#          readyTimeout: '20000'
+#        enabled: false
+#      - task: CmdLine@2
+#        displayName: Test 3 - Will Fail
+#        enabled: false
