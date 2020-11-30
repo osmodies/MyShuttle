@@ -27,11 +27,11 @@ steps:
         inputs:
           targetType: 'inline'
           script: 'echo "Script Test2"'
-      - task: Bash@3
-        displayName: Pepe
-        inputs:
-          targetType: 'inline'
-          script: 'echo "Script Test2"'
+#      - task: Bash@3
+#        displayName: Pepe
+#        inputs:
+#          targetType: 'inline'
+#          script: 'echo "Script Test2"'
 
 #      - task: SSH@0
 #        inputs:
